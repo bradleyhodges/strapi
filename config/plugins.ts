@@ -1,9 +1,4 @@
-module.exports = ({ env }) => ({
-    'users-permissions': {
-        config: {
-            jwtSecret: env('JWT_SECRET'),
-        },
-    },
+export default ({ env }) => ({
     upload: {
         config: {
             provider: "strapi-provider-cloudflare-r2",
