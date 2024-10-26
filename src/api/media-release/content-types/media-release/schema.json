@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media_releases",
+  "info": {
+    "singularName": "media-release",
+    "pluralName": "media-releases",
+    "displayName": "Media Release",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "string",
+      "required": true
+    },
+    "OfficialSubject": {
+      "type": "string",
+      "required": true
+    },
+    "Body": {
+      "type": "blocks",
+      "required": true
+    },
+    "DatePublished": {
+      "type": "date",
+      "required": true
+    },
+    "CanonicalSlug": {
+      "type": "uid",
+      "targetField": "Title",
+      "required": true
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "media-release",
+        "statement"
+      ],
+      "required": true
+    },
+    "Author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "media_releases"
+    },
+    "PublishAuthor": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "Tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "media_releases"
+    },
+    "Administration": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::administration.administration",
+      "inversedBy": "media_releases"
+    }
+  }
+}

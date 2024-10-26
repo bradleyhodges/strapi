@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "administrations",
+  "info": {
+    "singularName": "administration",
+    "pluralName": "administrations",
+    "displayName": "Administration"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "LocalManagerName": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "AdministrationName": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "AdministrationName",
+      "required": true
+    },
+    "news": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::news-item.news-item",
+      "mappedBy": "Administration"
+    },
+    "media_releases": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-release.media-release",
+      "mappedBy": "Administration"
+    }
+  }
+}
