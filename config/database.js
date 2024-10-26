@@ -4,6 +4,5 @@ module.exports = ({ env }) => ({
         connection: {
             connectionString: env('DATABASE_PRIVATE_URL')
         },
-        pool: { min: 0 }
     }
 });
