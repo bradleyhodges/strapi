@@ -65,6 +65,12 @@
       ],
       "type": "media",
       "multiple": true
+    },
+    "Events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event.event",
+      "mappedBy": "Location"
     }
   }
 }
