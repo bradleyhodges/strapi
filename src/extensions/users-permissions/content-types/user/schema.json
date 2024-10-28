@@ -80,6 +80,24 @@
       "relation": "oneToMany",
       "target": "api::media-release.media-release",
       "mappedBy": "Author"
+    },
+    "administrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::administration.administration",
+      "mappedBy": "LocalManager"
+    },
+    "FirstName": {
+      "type": "string",
+      "required": true
+    },
+    "Surname": {
+      "type": "string",
+      "required": true
+    },
+    "PositionDescription": {
+      "type": "string",
+      "required": true
     }
   }
 }
