@@ -373,6 +373,7 @@ export interface ApiAdministrationAdministration
   extends Struct.CollectionTypeSchema {
   collectionName: 'administrations';
   info: {
+    description: '';
     displayName: 'Administration';
     pluralName: 'administrations';
     singularName: 'administration';
@@ -384,6 +385,7 @@ export interface ApiAdministrationAdministration
     AdministrationName: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    Appointed: Schema.Attribute.Date & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -393,7 +395,10 @@ export interface ApiAdministrationAdministration
       'api::administration.administration'
     > &
       Schema.Attribute.Private;
-    LocalManagerName: Schema.Attribute.String & Schema.Attribute.Required;
+    LocalManager: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     media_releases: Schema.Attribute.Relation<
       'oneToMany',
       'api::media-release.media-release'
@@ -402,6 +407,7 @@ export interface ApiAdministrationAdministration
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'AdministrationName'> &
       Schema.Attribute.Required;
+    Superceded: Schema.Attribute.Date;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1104,6 +1110,10 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    administrations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::administration.administration'
+    >;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1115,6 +1125,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    FirstName: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1134,6 +1145,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    PositionDescription: Schema.Attribute.String & Schema.Attribute.Required;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1142,6 +1154,7 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.role'
     >;
     ServiceNumber: Schema.Attribute.UID & Schema.Attribute.Required;
+    Surname: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
