@@ -386,6 +386,10 @@ export interface ApiAdministrationAdministration
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     Appointed: Schema.Attribute.Date & Schema.Attribute.Required;
+    CEO: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -395,10 +399,6 @@ export interface ApiAdministrationAdministration
       'api::administration.administration'
     > &
       Schema.Attribute.Private;
-    LocalManager: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
     media_releases: Schema.Attribute.Relation<
       'oneToMany',
       'api::media-release.media-release'
@@ -597,10 +597,6 @@ export interface ApiNewsItemNewsItem extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'news'>;
-    Command: Schema.Attribute.Enumeration<
-      ['capability', 'operations', 'policy-information', 'finance']
-    > &
-      Schema.Attribute.Required;
     CoverPhoto: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
@@ -608,6 +604,18 @@ export interface ApiNewsItemNewsItem extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     DatePublished: Schema.Attribute.Date & Schema.Attribute.Required;
     Description: Schema.Attribute.String & Schema.Attribute.Required;
+    Directorate: Schema.Attribute.Enumeration<
+      [
+        'operations',
+        'technology',
+        'information-security',
+        'experience',
+        'strategy',
+        'legal',
+        'finance',
+      ]
+    > &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -834,6 +842,10 @@ export interface PluginReviewWorkflowsWorkflow
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
+    stageRequiredToPublish: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::review-workflows.workflow-stage'
+    >;
     stages: Schema.Attribute.Relation<
       'oneToMany',
       'plugin::review-workflows.workflow-stage'

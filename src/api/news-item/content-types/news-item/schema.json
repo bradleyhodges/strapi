@@ -54,15 +54,19 @@
       "required": true,
       "default": "news"
     },
-    "Command": {
+    "Directorate": {
       "type": "enumeration",
       "enum": [
-        "capability",
         "operations",
-        "policy-information",
+        "technology",
+        "information-security",
+        "experience",
+        "strategy",
+        "legal",
         "finance"
       ],
-      "required": true
+      "required": true,
+      "enumName": "command"
     },
     "Author": {
       "type": "relation",

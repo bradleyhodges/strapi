@@ -81,12 +81,6 @@
       "target": "api::media-release.media-release",
       "mappedBy": "Author"
     },
-    "administrations": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::administration.administration",
-      "mappedBy": "LocalManager"
-    },
     "FirstName": {
       "type": "string",
       "required": true
@@ -98,6 +92,12 @@
     "PositionDescription": {
       "type": "string",
       "required": true
+    },
+    "administrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::administration.administration",
+      "mappedBy": "CEO"
     }
   }
 }

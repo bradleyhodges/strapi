@@ -41,7 +41,7 @@
     "Superceded": {
       "type": "date"
     },
-    "LocalManager": {
+    "CEO": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
